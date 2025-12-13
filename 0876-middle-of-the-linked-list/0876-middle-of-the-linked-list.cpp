@@ -11,26 +11,17 @@
 class Solution {
 public:
     ListNode* middleNode(ListNode* head) {
-        if ( head == NULL || head->next == NULL) return head;
-        ListNode* temp=head;
+        if ( head == NULL || head->next == NULL)  return head ;
 
-        int cnt=0;
-        while ( temp!=NULL)
+
+        // Using tortoise and harse alogrithm 
+        ListNode* slow = head;
+        ListNode* fast = head;
+        while ( fast != NULL && fast->next != NULL)
         {
-            cnt++;
-            temp=temp->next;
+            slow = slow->next;
+            fast = fast->next->next;
         }
-        int mid = cnt/2 ;
-        temp=head;
-        while ( temp != NULL)
-        {
-            if ( mid == 0)
-                return temp;
-             else{
-                mid--;
-                temp = temp->next;
-             }
-        }
-        return temp;
+        return slow ;
     }
 };
